@@ -72,6 +72,7 @@ class ApiUtils {
                     // Open a connection to the URL
                     val url = URL(urlString)
                     val connection = url.openConnection() as HttpURLConnection
+
                     connection.setRequestProperty("Authorization", "Bearer $authCode")
                     val responseCode = connection.responseCode
                     println(responseCode)

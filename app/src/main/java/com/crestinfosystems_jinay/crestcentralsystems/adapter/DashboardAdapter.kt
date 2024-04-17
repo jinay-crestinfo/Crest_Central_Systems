@@ -1,11 +1,15 @@
 package com.crestinfosystems_jinay.crestcentralsystems.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.crestinfosystems_jinay.crestcentralsystems.databinding.DashboardAppliactionTileBinding
 import com.crestinfosystems_jinay.crestcentralsystems.model.dashboard_application
+import com.crestinfosystems_jinay.crestcentralsystems.ui.HRMS.dashboard.HRMS_Dashboard
 import com.crestinfosystems_jinay.crestcentralsystems.utils.ApiUtils
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
@@ -39,8 +43,11 @@ class DashboardAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
             if (items[position].app_key == "hrms") {
+                var intent = Intent(context, HRMS_Dashboard::class.java)
+                startActivity(context, intent, null)
             }
 //            else if (items[position].app_key == "timetracker") {
+//
 //            }
 //            else if (items[position].app_key == "assettracker") {
 //            }
