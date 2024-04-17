@@ -49,33 +49,36 @@ class HrmsUsersScreen : Fragment() {
     private fun addDataInAdapter(list: MutableList<user>) {
         val dashboardAdapter = context?.let { context ->
             HRMSUsersListAdapter(list, context) { user ->
-                val builder = AlertDialog.Builder(context)
-                builder.setTitle(user.first_name + " " + user.last_name)
-                val daialogBinding: DetsilsUserViewBinding =
-                    DetsilsUserViewBinding.inflate(layoutInflater)
-                builder.setView(daialogBinding.root)
-                daialogBinding.empCall.setOnClickListener {
-                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse("tel:${user.contact_number}"))
-                    startActivity(intent)
-                }
-                daialogBinding.empEmail.setOnClickListener {
-                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:${user.email}"))
-                    startActivity(intent)
-                }
-                daialogBinding.designationName.text = user.designation_name.toString()
-                daialogBinding.employeeId.text = "Employee Id - ${user.employee_number}"
-                daialogBinding.reportingTo.text =
-                    "Reporting to - ${user.reportingTo.first_name} ${user.reportingTo.last_name}"
-                builder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int ->
-                    dialog?.cancel()
-                }
-
-                val dialog = builder.create()
-                dialog.show()
+                dialogBox(user)
             }
         }
         binding.recyclerViewAdapter.adapter = dashboardAdapter
         binding.progressCircular.visibility = View.GONE
         binding.recyclerViewAdapter.visibility = View.VISIBLE
+    }
+
+    private fun dialogBox(user: user) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(user.first_name + " " + user.last_name)
+        val daialogBinding: DetsilsUserViewBinding =
+            DetsilsUserViewBinding.inflate(layoutInflater)
+        builder.setView(daialogBinding.root)
+        daialogBinding.empCall.setOnClickListener {
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("tel:${user.contact_number}"))
+            startActivity(intent)
+        }
+        daialogBinding.empEmail.setOnClickListener {
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:${user.email}"))
+            startActivity(intent)
+        }
+        daialogBinding.designationName.text = user.designation_name.toString()
+        daialogBinding.employeeId.text = "Employee Id - ${user.employee_number}"
+        daialogBinding.reportingTo.text =
+            "Reporting to - ${user.reportingTo.first_name} ${user.reportingTo.last_name}"
+        builder.setPositiveButton("Ok") { dialog: DialogInterface?, which: Int ->
+            dialog?.cancel()
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 }

@@ -6,4 +6,5 @@
     <color name="black_crest">#242423</color>
     <color name="selected_icon">#7CB900</color>
     <color name="unselected_icon">#C1C1C1</color>
+    <color name="green_crest">#7CB900</color>
 </resources>
