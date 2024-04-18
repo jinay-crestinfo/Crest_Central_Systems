@@ -9,16 +9,21 @@ import com.crestinfosystems_jinay.crestcentralsystems.Network.AuthApi
 class LoginViewModel : ViewModel() {
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
-
-    fun SignIn(onSuccess: (Map<String, Any>?) -> Unit) {
-        Log.d("Email", email.value.toString())
-        Log.d("Password", password.value.toString())
-        AuthApi.login(email = email.value.toString(),
-            password = password.value.toString(),
-            onError = {},
-            onSuccess = {
-                onSuccess(it)
-            }
-        )
+    val isCorrect = MutableLiveData(false)
+    fun SignIn(onSuccess: (Map<String, Any>?) -> Unit, onApiFail: (String) -> Unit) {
+        if (isCorrect.value ?: false) {
+            Log.d("Email", email.value.toString())
+            Log.d("Password", password.value.toString())
+            AuthApi.login(email = email.value.toString(),
+                password = password.value.toString(),
+                onError = {},
+                onSuccess = {
+                    onSuccess(it)
+                },
+                onApiFail = {
+                    onApiFail(it)
+                }
+            )
+        }
     }
 }

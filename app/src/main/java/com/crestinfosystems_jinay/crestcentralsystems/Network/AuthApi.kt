@@ -11,7 +11,8 @@ class AuthApi {
             email: String,
             password: String,
             onSuccess: (Map<String, Any>?) -> Unit,
-            onError: () -> Unit
+            onError: () -> Unit,
+            onApiFail: (String) -> Unit
         ) {
             val apiUrl = "https://hrms.crestinfosystems.net/api/users/login"
             val requestBody = FormBody.Builder()
@@ -39,6 +40,9 @@ class AuthApi {
                         CrestCentralSystem.sharedPreferencesManager.userName =
                             ((data["user"] as Map<String, Any>)["first_name"].toString() + " " + (data["user"] as Map<String, Any>)["last_name"].toString())
                         onSuccess(resultMap)
+                    } else {
+                        println(resultMap!!["message"].toString())
+                        onApiFail(resultMap["message"].toString())
                     }
                 }
             }

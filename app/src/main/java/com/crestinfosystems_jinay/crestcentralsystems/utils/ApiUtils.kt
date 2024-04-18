@@ -48,11 +48,13 @@ class ApiUtils {
                                 continuation.resume(resultMap)
                             } catch (e: Exception) {
                                 continuation.resumeWithException(e)
+
                             }
                         }
 
                         override fun onFailure(call: Call, e: IOException) {
                             continuation.resumeWithException(e)
+
                         }
                     })
                 }
