@@ -9,132 +9,153 @@
             name="HRMSDashboardViewModel"
             type="com.crestinfosystems_jinay.crestcentralsystems.viewModel.HRMSDashboardViewModel" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F4F4F3"
-        tools:context=".ui.dashboard.Dashboard">
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_dashboard"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/black_crest"
-            android:theme="@style/ToolBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            app:titleTextColor="@color/white">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/drawer_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/ic_drawer"
-                    app:tint="@color/white" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/crest_hrms" />
-            </FrameLayout>
-
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <FrameLayout
-
-            android:id="@+id/flFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_dashboard" />
-
-        <!--    <Button-->
-        <!--        android:id="@+id/log_out_btn"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:text="Log Out"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-        <!--        android:id="@+id/bottom_navigation"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:background="#00FFFFFF "-->
-        <!--        app:itemIconTint="@color/selected_icon_color_bottomnav"-->
-        <!--        app:itemTextColor="@color/selected_icon_color_bottomnav"-->
-        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--        app:menu="@menu/bottom_navigation_menu" />-->
-
+        <!-- Your main content layout -->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottomNavigationBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/black_crest"
-            android:paddingVertical="10dp"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_height="match_parent"
+            android:background="#F4F4F3"
+            tools:context=".ui.dashboard.Dashboard">
 
-            <ImageView
-                android:id="@+id/tab1"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_home"
-                app:layout_constraintEnd_toStartOf="@+id/tab2"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/black_crest"
+                android:theme="@style/ToolBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="#7CB900" />
 
-            <ImageView
-                android:id="@+id/tab2"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_calender"
-                app:layout_constraintEnd_toStartOf="@+id/tab3"
-                app:layout_constraintStart_toEndOf="@id/tab1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="#C1C1C1" />
+                app:titleTextColor="@color/white">
 
-            <ImageView
-                android:id="@+id/tab3"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_policies"
-                app:layout_constraintEnd_toStartOf="@+id/tab4"
-                app:layout_constraintStart_toEndOf="@id/tab2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="#C1C1C1" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/tab4"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_users"
+                    <ImageView
+                        android:id="@+id/drawer_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_drawer"
+                        app:tint="@color/white" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/crest_hrms" />
+                </FrameLayout>
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <FrameLayout
+
+                android:id="@+id/flFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNavigationBar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tab3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="#C1C1C1" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_dashboard" />
 
+            <!--    <Button-->
+            <!--        android:id="@+id/log_out_btn"-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:text="Log Out"-->
+            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--        app:layout_constraintStart_toStartOf="parent"-->
+            <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+            <!--        android:id="@+id/bottom_navigation"-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:background="#00FFFFFF "-->
+            <!--        app:itemIconTint="@color/selected_icon_color_bottomnav"-->
+            <!--        app:itemTextColor="@color/selected_icon_color_bottomnav"-->
+            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--        app:menu="@menu/bottom_navigation_menu" />-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bottomNavigationBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_crest"
+                android:paddingVertical="10dp"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/tab1"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/ic_home"
+                    app:layout_constraintEnd_toStartOf="@+id/tab2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#7CB900" />
+
+                <ImageView
+                    android:id="@+id/tab2"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/ic_calender"
+                    app:layout_constraintEnd_toStartOf="@+id/tab3"
+                    app:layout_constraintStart_toEndOf="@id/tab1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#C1C1C1" />
+
+                <ImageView
+                    android:id="@+id/tab3"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/ic_policies"
+                    app:layout_constraintEnd_toStartOf="@+id/tab4"
+                    app:layout_constraintStart_toEndOf="@id/tab2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#C1C1C1" />
+
+                <ImageView
+                    android:id="@+id/tab4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/ic_users"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tab3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#C1C1C1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- NavigationView for the drawer -->
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/hrms_drawer_header"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/hrms_drawer_menu" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
 </layout>

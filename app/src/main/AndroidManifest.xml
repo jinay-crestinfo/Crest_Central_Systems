@@ -16,6 +16,9 @@
         android:theme="@style/Theme.CrestCentralSystems"
         tools:targetApi="31">
         <activity
+            android:name=".ui.HRMS.subscreens.hrms_holidays_screen"
+            android:exported="false" />
+        <activity
             android:name=".ui.HRMS.dashboard.HRMS_Dashboard"
             android:exported="false" />
         <activity

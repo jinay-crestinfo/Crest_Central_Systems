@@ -1,10 +1,11 @@
 package com.crestinfosystems_jinay.crestcentralsystems.adapter
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.crestinfosystems_jinay.crestcentralsystems.databinding.DashboardAppliactionTileBinding
@@ -15,6 +16,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 class DashboardAdapter(
     private var items: List<dashboard_application>,
@@ -52,12 +54,7 @@ class DashboardAdapter(
 //            else if (items[position].app_key == "assettracker") {
 //            }
             else {
-                println(
-                    items[position].app_url
-                )
-                CoroutineScope(Dispatchers.Main).launch {
-                    ApiUtils.launchUrlWithHeaders(context, items[position].app_url)
-                }
+                dialog(items[position].app_url)
             }
 
         }
@@ -73,5 +70,26 @@ class DashboardAdapter(
     fun submitList(newData: List<dashboard_application>) {
         items = newData
         notifyDataSetChanged()
+    }
+
+    private fun dialog(url: String) {
+        val builder = AlertDialog.Builder(context)
+        builder.setMessage("This Feature currently not available on App. Want to processed with WebView?")
+        builder.setTitle("Alert !")
+        builder.setCancelable(false)
+        builder.setPositiveButton(
+            "Yes"
+        ) { dialog: DialogInterface?, which: Int ->
+            CoroutineScope(Dispatchers.Main).launch {
+                ApiUtils.launchUrlWithHeaders(context, url)
+            }
+        }
+        builder.setNegativeButton(
+            "No"
+        ) { dialog: DialogInterface, which: Int ->
+            dialog.cancel()
+        }
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 }
