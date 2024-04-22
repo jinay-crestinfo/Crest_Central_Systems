@@ -6,6 +6,10 @@
             android:icon="@drawable/ic_holidays"
             android:title="Holidays" />
         <item
+            android:id="@+id/hrms_drawer_imp_contects"
+            android:icon="@drawable/ic_imp"
+            android:title="Important Contacts" />
+        <item
             android:id="@+id/hrms_drawer_signout"
             android:icon="@drawable/ic_signout"
             android:title="Sign Out" />

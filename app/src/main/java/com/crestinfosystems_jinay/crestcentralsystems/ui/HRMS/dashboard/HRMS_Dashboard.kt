@@ -1,5 +1,7 @@
 package com.crestinfosystems_jinay.crestcentralsystems.ui.HRMS.dashboard
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
@@ -19,7 +21,9 @@ import com.crestinfosystems_jinay.crestcentralsystems.ui.HRMS.Fragment.HrmsLeave
 import com.crestinfosystems_jinay.crestcentralsystems.ui.HRMS.Fragment.HrmsPoliciesScreen
 import com.crestinfosystems_jinay.crestcentralsystems.ui.HRMS.Fragment.HrmsUsersScreen
 import com.crestinfosystems_jinay.crestcentralsystems.ui.HRMS.subscreens.hrms_holidays_screen
+import com.crestinfosystems_jinay.crestcentralsystems.ui.HRMS.subscreens.hrms_important_contacts
 import com.crestinfosystems_jinay.crestcentralsystems.viewModel.HRMSDashboardViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HRMS_Dashboard : AppCompatActivity() {
     private lateinit var binding: ActivityHrmsDashboardBinding
@@ -154,10 +158,7 @@ class HRMS_Dashboard : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.hrms_drawer_signout -> {
-                    CrestCentralSystem.sharedPreferencesManager.accessToken = null
-                    val intent = Intent(this, LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
+                    signOut()
                     false
                 }
 
@@ -167,8 +168,48 @@ class HRMS_Dashboard : AppCompatActivity() {
                     false
                 }
 
+                R.id.hrms_drawer_imp_contects -> {
+                    val intent = Intent(this, hrms_important_contacts::class.java)
+                    startActivity(intent)
+                    false
+                }
+
                 else -> false
             }
+        }
+    }
+
+    private fun signOut() {
+        try {
+            val builder = AlertDialog.Builder(this@HRMS_Dashboard)
+            builder.setMessage("")
+            builder.setTitle("Alert !")
+            builder.setCancelable(false)
+            builder.setPositiveButton(
+                "Yes"
+            ) { dialog: DialogInterface?, which: Int ->
+                CrestCentralSystem.sharedPreferencesManager.accessToken = null
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
+            builder.setNegativeButton(
+                "No"
+            ) { dialog: DialogInterface, which: Int ->
+                dialog.cancel()
+            }
+            val alertDialog = builder.create()
+            alertDialog.show()
+        } catch (e: Exception) {
+            val bottomSheetDialog = BottomSheetDialog(this)
+            bottomSheetDialog.setContentView(R.layout.bottom_sheet_error_view)
+            bottomSheetDialog.findViewById<TextView>(R.id.error_message)?.text =
+                "Failed to Signout! Try again."
+            bottomSheetDialog.findViewById<androidx.cardview.widget.CardView>(R.id.cancel_button)
+                ?.setOnClickListener {
+                    bottomSheetDialog.cancel()
+                }
+            bottomSheetDialog.show()
         }
     }
 
